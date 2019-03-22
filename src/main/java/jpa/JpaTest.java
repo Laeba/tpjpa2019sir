@@ -1,5 +1,7 @@
 package jpa;
 
+import entities.User;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
@@ -17,8 +19,11 @@ public class JpaTest {
 
 
 		try {
+			User user = new User("person@gmail.com", "person", "id");
+			manager.persist(user);
 
 		} catch (Exception e) {
+			tx.rollback();
 			e.printStackTrace();
 		}
 		tx.commit();
